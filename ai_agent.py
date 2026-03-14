@@ -1,6 +1,7 @@
-import openai
+from openai import OpenAI
 
-openai.api_key = "YOUR_OPENAI_KEY"
+# Initialize client
+client = OpenAI(api_key="YOUR_OPENAI_KEY")  # keep your key safe
 
 def generate_code(question):
     prompt = f"""
@@ -16,14 +17,16 @@ Return only Python code without explanation.
 Question:
 {question}
 """
-    response = openai.ChatCompletion.create(
+
+    # Use the new API
+    response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[{"role":"user","content":prompt}]
+        messages=[{"role": "user", "content": prompt}]
     )
 
-    code = response["choices"][0]["message"]["content"]
+    code = response.choices[0].message.content
 
-    # Remove possible ```python ``` blocks
+    # Remove ```python ``` blocks if present
     if code.startswith("```"):
         code = "\n".join(code.split("\n")[1:-1])
 
