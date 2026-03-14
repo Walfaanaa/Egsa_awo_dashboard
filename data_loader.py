@@ -5,17 +5,16 @@ import matplotlib.pyplot as plt
 from ai_agent import generate_code  # your AI code generator
 
 # -----------------------------
-# Load Data with caching
+# Load Data from local CSV
 # -----------------------------
 @st.cache_data
 def load_data():
-    url = "https://raw.githubusercontent.com/Walfaanaa/Egsa_awo_dashboard/main/AWO.csv"
     try:
-        df = pd.read_csv(url)
+        df = pd.read_csv("AWO.csv")  # make sure this file is in the same folder as your app
         return df
     except Exception as e:
-        st.error(f"Failed to load data: {e}")
-        return pd.DataFrame()  # empty df on failure
+        st.error(f"Failed to load CSV locally: {e}")
+        return pd.DataFrame()  # empty dataframe on failure
 
 df = load_data()
 
@@ -56,4 +55,3 @@ if st.button("Analyze"):
 
     except Exception as e:
         st.error(f"AI code execution failed: {e}")
-
