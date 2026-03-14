@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from data_loader import load_data
-from ai_agent import generate_code
+from ai_agent import generate_code  # your AI code generator
 
 # -----------------------------
 # Streamlit Page Setup
