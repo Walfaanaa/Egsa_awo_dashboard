@@ -1,7 +1,7 @@
 from openai import OpenAI
 
-# Initialize client
-client = OpenAI(api_key="YOUR_OPENAI_KEY")  # keep your key safe
+# Initialize OpenAI client
+client = OpenAI(api_key="YOUR_OPENAI_KEY")  # replace with your key
 
 def generate_code(question):
     prompt = f"""
@@ -18,7 +18,7 @@ Question:
 {question}
 """
 
-    # Use the new API
+    # Use the new API method
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}]
@@ -26,7 +26,7 @@ Question:
 
     code = response.choices[0].message.content
 
-    # Remove ```python ``` blocks if present
+    # Remove triple backticks if returned by AI
     if code.startswith("```"):
         code = "\n".join(code.split("\n")[1:-1])
 
