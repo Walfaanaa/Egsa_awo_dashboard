@@ -2,7 +2,7 @@ import pandas as pd
 
 def load_data():
 
-  https://raw.githubusercontent.com/Walfaanaa/Egsa_awo_dashboard/main/AWO.csv
+    url = "https://raw.githubusercontent.com/Walfaanaa/Egsa_awo_dashboard/main/AWO.csv"
 
     df = pd.read_csv(url)
 
